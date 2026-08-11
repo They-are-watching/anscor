@@ -9,7 +9,7 @@
 	],
 	"contact": {
 		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"sources": "https://github.com/They-are-watching/anscor"
 	},
 	"license": "CC0-1.0",
 	"icon": "assets/anscor/icon.png",
@@ -36,5 +36,10 @@
 		"minecraft": "~1.21.1",
 		"java": ">=21",
 		"fabric-api": "*"
+	},
+	"custom": {
+		"cardinal-components": [
+			"anscor:custom_gamemode"
+		]
 	}
 }

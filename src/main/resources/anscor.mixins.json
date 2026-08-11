@@ -3,7 +3,10 @@
 	"package": "dev.herasy.alsepath.anscor.mixin",
 	"compatibilityLevel": "JAVA_21",
 	"mixins": [
-		"ExampleMixin"
+
+	],
+	"client": [
+		"GameModeSelectionScreenMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

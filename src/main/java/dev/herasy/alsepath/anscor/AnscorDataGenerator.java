@@ -1,3 +1,4 @@
+// src/main/java/dev/herasy/alsepath/anscor/AnscorDataGenerator.java
 package dev.herasy.alsepath.anscor;
 
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
