@@ -1,0 +1,40 @@
+{
+	"schemaVersion": 1,
+	"id": "anscor",
+	"version": "${version}",
+	"name": "Anscor",
+	"description": "First mod for this channel :D",
+	"authors": [
+		"Herasy"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/anscor/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"dev.herasy.alsepath.anscor.Anscor"
+		],
+		"fabric-datagen": [
+			"dev.herasy.alsepath.anscor.AnscorDataGenerator"
+		],
+		"client": [
+			"dev.herasy.alsepath.anscor.AnscorClient"
+		],
+		"cardinal-components": [
+			"dev.herasy.alsepath.anscor.AnscorComponents"
+		]
+	},
+	"mixins": [
+		"anscor.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.19.3",
+		"minecraft": "~1.21.1",
+		"java": ">=21",
+		"fabric-api": "*"
+	}
+}
