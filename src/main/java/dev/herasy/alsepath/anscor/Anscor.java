@@ -22,7 +22,7 @@ public class Anscor implements ModInitializer {
 		CustomGameModeRegistry.register(new CustomGameMode(
 				Identifier.of(MOD_ID, "anscor"),
 				Text.literal("Anscor"),
-				Identifier.of(MOD_ID, "textures/gui/icons/hardcore_creative.png"),
+				Identifier.of(MOD_ID, "textures/gui/icons/heart.png"),
 				true, // Reveal in F3+F4
 				GameMode.CREATIVE
 		));
@@ -31,7 +31,7 @@ public class Anscor implements ModInitializer {
 		CustomGameModeRegistry.register(new CustomGameMode(
 				Identifier.of(MOD_ID, "rpg_adventure"),
 				Text.literal("Story Mode"),
-				Identifier.of(MOD_ID, "textures/gui/icons/rpg.png"),
+				Identifier.of(MOD_ID, "textures/gui/icons/hunger.png"),
 				false, // Hidden from F3+F4 menu entirely
 				GameMode.ADVENTURE
 		));

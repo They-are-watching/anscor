@@ -8,9 +8,13 @@ import net.minecraft.client.gui.screen.narration.NarrationMessageBuilder;
 import net.minecraft.client.gui.widget.ClickableWidget;
 import net.minecraft.util.Identifier;
 
-public class CustomGameModeButton extends ClickableWidget {
+public class CustomGameModeButton extends ClickableWidget implements SelectableButton {
     private final CustomGameMode mode;
-    private static final Identifier BACKGROUND_TEXTURE = Identifier.ofVanilla("textures/gui/container/gamemode_switcher.png");
+    private boolean selected;
+
+    // Vanilla Atlas Keys
+    private static final Identifier SLOT_TEXTURE = Identifier.ofVanilla("gamemode_switcher/slot");
+    private static final Identifier SELECTION_TEXTURE = Identifier.ofVanilla("gamemode_switcher/selection");
 
     public CustomGameModeButton(int x, int y, CustomGameMode mode) {
         super(x, y, 26, 26, mode.getDisplayName());
@@ -19,34 +23,34 @@ public class CustomGameModeButton extends ClickableWidget {
 
     @Override
     public void renderWidget(DrawContext context, int mouseX, int mouseY, float delta) {
-        context.getMatrices().push();
-        if (this.isFocused()) {
-            // Draw the "Selected" white outline box
-            context.drawTexture(BACKGROUND_TEXTURE, this.getX(), this.getY(), 0, 166, 26, 26);
-        } else {
-            // Draw the standard grey box
-            context.drawTexture(BACKGROUND_TEXTURE, this.getX(), this.getY(), 0, 192, 26, 26);
-        }
+        // 1. Draw Slot
+        context.drawGuiTexture(SLOT_TEXTURE, this.getX(), this.getY(), 26, 26);
 
+        // 2. Draw Icon (16x16 centered in 26x26)
         context.drawTexture(mode.getIconTexture(), this.getX() + 5, this.getY() + 5, 0, 0, 16, 16, 16, 16);
-        context.getMatrices().pop();
+
+        // 3. Draw Selection
+        if (this.selected) {
+            context.drawGuiTexture(SELECTION_TEXTURE, this.getX(), this.getY(), 26, 26);
+        }
     }
 
-    // Triggered when user releases click on this icon slot
+    @Override
+    public void anscor$setSelected(boolean selected) {
+        this.selected = selected;
+        this.setFocused(selected);
+    }
+
     @Override
     public void onClick(double mouseX, double mouseY) {
         MinecraftClient client = MinecraftClient.getInstance();
-        if (client.player != null) {
-            // Log for verification
-            client.player.sendMessage(net.minecraft.text.Text.of("Selected Custom Mode: " + mode.getId().toString()), false);
-
-            // Force the fallback base vanilla loop to prevent game breaks right now
+        if (client != null && client.player != null) {
             if (client.interactionManager != null) {
                 client.interactionManager.setGameMode(mode.getVanillaFallback());
             }
+            client.player.networkHandler.sendChatCommand("gamemode " + mode.getId().toString());
         }
-        // Close screen layout menu
-        client.setScreen(null);
+        if (client != null) client.setScreen(null);
     }
 
     public CustomGameMode getMode() { return mode; }
