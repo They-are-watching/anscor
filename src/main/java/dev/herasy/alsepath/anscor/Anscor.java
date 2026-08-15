@@ -19,7 +19,7 @@ public class Anscor implements ModInitializer {
 	public void onInitialize() {
 		LOGGER.info("Initializing Custom Game Mode Library!");
 
-		// 1. Create a Hardcore Creative mode that shows up in F3 menu
+		// ANSCOR IS HERE YES.
 		CustomGameModeRegistry.register(new CustomGameMode(
 				Identifier.of(MOD_ID,"anscor"),
 				Text.literal("Anscor"),
@@ -28,16 +28,7 @@ public class Anscor implements ModInitializer {
 				GameMode.CREATIVE
 		));
 
-		// 2. Create a Hidden RPG Quest Mode (F3 hidden!)
-		CustomGameModeRegistry.register(new CustomGameMode(
-				Identifier.of(MOD_ID,"rpg_adventure"),
-				Text.literal("Story Mode"),
-				Identifier.of(MOD_ID, "textures/gui/icons/hunger.png"),
-				false,
-				GameMode.ADVENTURE
-		));
-
-		// Register new custom sub-commands
+		// Register new custom gamemodes
 		ModGamemodeCommand.register();
 	}
 
